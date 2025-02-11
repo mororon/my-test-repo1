@@ -1,16 +1,11 @@
-name: Run name
-# ワークフロー実行名の指定
-# コンテキストが利用できる。
-run-name: Run by @${{ github.actor }} 
+name: GITHUB_OUTPUT
 on: push
 jobs:
-  print: #これはジョブID
-    name: Super Useful Name #ジョブ名
+  share:
     runs-on: ubuntu-latest
     steps:
-      #ジョブのステップです。
-      # 後続のハイフン１つずつが別ステップとなる別シェルが動くという構造になっています。
-      # １つのシェルで実行したいケースではまとめて記載する必要があるでしょう。
-      # なので -nameで名前つけたシェル内でrunを動かすから-いらず。
-      - name: Amazing Script #ステップ名
-        run: echo "Hello, world!"
+      - id: source   #ステップIDを設定
+        run: echo "result=Hello" >> "${GITHUB_OUTPUT}" #GITHUB_OUTPUTに出力
+      - env:
+          RESULT: ${{ steps.source.outputs.result }} #ステップの出力を環境変数に設定
+        run: echo "${RESULT}" #環境変数を出力
