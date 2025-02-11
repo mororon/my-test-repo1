@@ -1,0 +1,10 @@
+name: Hash functions
+on: pull_request
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "${HASH}"
+        env:
+          HASH: ${{ hashFiles('.github/workflows*.yml') }} #引数のパスじからファイルのハッシュ値を生成する    
