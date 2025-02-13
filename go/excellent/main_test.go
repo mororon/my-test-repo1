@@ -7,3 +7,4 @@ func TestEvenOrOdd(t *testing.T) {
 	if result != "even" {
 		t.Errorf("expected: even, actual: %s", result)
 	}
+}
