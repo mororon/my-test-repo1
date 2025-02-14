@@ -1,14 +1,12 @@
-name: Test
-on:
-  pull_request:
-    paths: ['go/**/*.go']
+name: Change shell
+on: push
 jobs:
-  test:
+  print:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # ステップ#1:チェックアウト
-      - uses: actions/setup-go@v5 # ステップ#2:Goのセットアップ
-        with:
-          go-version: '1.22'
-      - run: go test go/excellent/*.go  # ステップ#3:テストの実行
-      #実装完了
+      - shell: bash   #シェルをbashに変更
+        run: echo "${SHELL}"
+      - shell: python  #シェルにPythonを指定
+        run: |
+          import os
+          print(os.environ['PATH'])
