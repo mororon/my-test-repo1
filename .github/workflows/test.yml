@@ -1,17 +1,11 @@
-  name: Share job data
-  on: push
-  jobs:
-    before:
-      runs-on: ubuntu-latest
-      steps:
-        - id: generate #ステップのID
-          run: echo "result=Hello" >> ${GITHUB_OUTPUT} #ステップレベルの出力値
-      outputs:
-        result: ${{ steps.generate.outputs.result }} #ジョブレベルの出力値
-    after:
-      needs: [before]
-      runs-on: ubuntu-latest
-      steps:
-        - env:
-            RESULT: ${{needs.before.outputs.result}} #ジョブレベルの出力値を参照
-          run: echo $RESULT
+name: Matrix
+on: push
+jobs:
+  print:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest] # OSプロパティの定義
+    runs-on: ${{ matrix.os }} # OSプロパティの参照
+    steps:
+      - run: echo "${RUNNER_OS}"
+        shell: bash
