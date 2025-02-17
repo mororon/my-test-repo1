@@ -1,12 +1,7 @@
-name: Change shell
+name: Debug Log
 on: push
 jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash   #シェルをbashに変更
-        run: echo "${SHELL}"
-      - shell: python  #シェルにPythonを指定
-        run: |
-          import os
-          print(os.environ['PATH'])
+      - run: echo "::debug::This is a debug message" #デバッグログ有効化時のみ出力
