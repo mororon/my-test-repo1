@@ -8,7 +8,7 @@ jobs:
       - uses: actions/cache@v4   #キャッシュの復元と保存
         with:
           key: test-${{ runner.os }}-${{ github.sha}} #キャッシュキー
-          path: ${{ github.workspace }}/dummy #キャッシュする対象のパス
+          path: ${{ github.workspace }}/dummy #キャッシュする対象のパス 
           restore-keys: |
             test-${{ runner.os }}-
       - run: |
