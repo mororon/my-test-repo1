@@ -1,14 +1,18 @@
-name: Test
+name: Environments
 on:
-  pull_request:
-    paths: ['go/**/*.go']
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: environment
+        default: test
+        required: false
+        description: Environment name
 jobs:
-  test:
+  print:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment-name }} #利用するEnvironmentを指定
+    env:
+      USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
-      - uses: actions/checkout@v4 # ステップ#1:チェックアウト
-      - uses: actions/setup-go@v5 # ステップ#2:Goのセットアップ
-        with:
-          go-version: '1.22'
-      - run: go test go/excellent/*.go  # ステップ#3:テストの実行
-      #実装完了
+      - run: echo "${USERNAME}" ${PASSWORD#?}
