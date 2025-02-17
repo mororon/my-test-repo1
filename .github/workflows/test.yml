@@ -4,4 +4,7 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::debug::This is a debug message" #デバッグログ有効化時のみ出力
+      - run: |
+        set -x
+        date
+        hostname
