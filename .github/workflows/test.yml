@@ -10,7 +10,7 @@ on:
 jobs:
   print:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment-name }} #利用するEnvironmentを指定
+    environment: ${{ inputs.environment-name }} #利用するEnvironmentを指定a
     env:
       USERNAME: ${{ vars.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
