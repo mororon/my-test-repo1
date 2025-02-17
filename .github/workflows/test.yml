@@ -1,17 +1,18 @@
-name: Matrix
-on: push
+name: Environments
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: environment
+        default: test
+        required: false
+        description: Environment name
 jobs:
   print:
-    strategy:
-      matrix:
-        include:  #組合せ条件を手動で列挙
-        - os: ubuntu-latest
-          version: 20
-        - os: macos-latest
-          version: 18
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment-name }} #利用するEnvironmentを指定
+    env:
+      USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.version }}
-      - run: echo "${RUNNER_OS}" && node --version
+      - run: echo "${USERNAME}" ${PASSWORD#?}
