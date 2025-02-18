@@ -12,4 +12,3 @@ jobs:
             - run: echo "&{DATE}"
               env:
                 DATE: ${{ steps.dump.outputs.dumped-date }} #アクションの出力値を参照
-                shell: bash
