@@ -13,16 +13,16 @@ outputs:
         description: ダンプ日時
 runs:
     using: composite
-    steps: 
-        - run: printenv | sort
-            shell: bash
-        - run: echo "&{CONTEXT}"
-            if: ${{ inputs.enable-context == 'true' }}
-            env:
-                CONTEXT: ${{ toJson(github) }}
-            shell: bash
-        - id: current
-            run: echo "date=$(date)" >> "${GITHUB_OUTPUT}"
-            shell: bash
+    steps:
+    - run: printenv | sort
+      shell: bash
+    - run: echo "&{CONTEXT}"
+      if: ${{ inputs.enable-context == 'true' }}
+      env:
+        CONTEXT: ${{ toJson(github) }}
+        shell: bash
+    - id: current
+      run: echo "date=$(date)" >> "${GITHUB_OUTPUT}"
+      shell: bash
 
     　
