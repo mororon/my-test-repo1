@@ -1,0 +1,10 @@
+changelog:
+ categories: #リリースノートのカテゴリ設定
+  - title: Enhancement #リリースノートへ「Enhancement」というカテゴリを作成する
+    labels:
+      - enhancement #ラベル「enhancement」が付いているプルリクエストを「Enhancement」カテゴリに追加する
+ exclude:
+  labels: #除外するラベル
+    - dependencies
+  authors: #除外するユーザー
+    - dependabot
