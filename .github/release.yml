@@ -6,5 +6,5 @@ changelog:
   exclude:
     labels: #除外するラベル
       - dependencies
-  authors: #除外するユーザー
-    - dependabot
+    authors: #除外するユーザー
+      - dependabot
