@@ -12,4 +12,8 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub CLIのクレデンシャル
         steps:
             - uses: actions/checkout@v4
-            - run: gh pr merge "${GITHUB_HEAD_REF}" --merge # GitHub CLIのコマンドを実行
+             # GitHub CLIのコマンドを実行 --autoでステータスチェックがすべて成功に終わったタイミングで自動マージ
+             # gh pr review --approveで自動承認も可能
+            - run: |
+                gh pr review "${GITHUB_HEAD_REF}" --approve 
+                gh pr merge "${GITHUB_HEAD_REF}" --merge --auto 
